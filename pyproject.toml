@@ -1,3 +1,13 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/github_predictor"]
+
 [project]
 name = "github-trend-predictor"
 version = "0.1.0"
@@ -6,11 +16,14 @@ readme = "README.md"
 requires-python = ">=3.10,<3.12"
 dependencies = [
     "anthropic>=0.75.0",
+    "beautifulsoup4>=4.12.0",
+    "confluent-kafka>=2.12.2",
     "gradio>=6.2.0",
     "great-expectations>=1.10.0",
     "hopsworks>=4.6.0",
     "matplotlib>=3.10.8",
     "pandas>=2.3.3",
+    "pyarrow>=22.0.0",
     "pydantic>=2.12.5",
     "pydantic-settings>=2.12.0",
     "python-dotenv>=1.2.1",
@@ -19,3 +32,8 @@ dependencies = [
     "seaborn>=0.13.2",
     "xgboost>=3.1.2",
 ]
+
+[project.scripts]
+backfill = "github_predictor.pipelines.feature_pipeline.backfill_pipeline:run_backfill"
+daily-features = "github_predictor.pipelines.feature_pipeline.daily_pipeline:run_daily_features"
+train = "github_predictor.pipelines.training_pipeline:run_training"
