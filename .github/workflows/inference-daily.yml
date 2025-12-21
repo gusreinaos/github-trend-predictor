@@ -37,9 +37,9 @@ jobs:
       - name: run inference pipeline
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           uv run predict
+          echo TODO
 
       - name: upload predictions artifact
         if: success()
