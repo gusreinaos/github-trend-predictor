@@ -1623,5 +1623,13 @@
     "YouMind-OpenLab/awesome-nano-banana-pro-prompts",
     "anthropics/claude-quickstarts",
     "codecrafters-io/build-your-own-x"
+  ],
+  "2025-12-26": [
+    "rendercv/rendercv",
+    "langgenius/dify",
+    "NanmiCoder/MediaCrawler",
+    "flowsurface-rs/flowsurface",
+    "yichuan-w/LEANN",
+    "apurvsinghgautam/robin"
   ]
 }
