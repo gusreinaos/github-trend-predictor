@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 from github_predictor.pipelines.feature_pipeline.feature_enricher import FeatureEnricher
-from github_predictor.pipelines.feature_pipeline.hopsworks_client import HopsworksClient
+from github_predictor.pipelines.hopsworks_client import HopsworksClient
 from github_predictor.pipelines.feature_pipeline.trending_labeler import TrendingLabeler
 from github_predictor.pipelines.feature_pipeline.trending_scraper import TrendingScraper
 from github_predictor.utils.config import DATA_DIR, setup_logger

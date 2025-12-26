@@ -1,6 +1,11 @@
 from typing import Optional
+from datetime import datetime, timedelta
+import os
+import joblib
 
 import pandas as pd
+from hsml.schema import Schema
+from hsml.model_schema import ModelSchema
 
 from github_predictor.utils.config import (
     get_hopsworks_config,
@@ -25,6 +30,8 @@ class HopsworksClient:
         self.project = None
         self.feature_store = None
         self.feature_group = None
+        self.model_registry = None
+        self.feature_view = None
 
         logger.info("HopsworksClient initialized")
 
@@ -42,6 +49,7 @@ class HopsworksClient:
             )
 
             self.feature_store = self.project.get_feature_store()
+            self.model_registry = self.project.get_model_registry()
 
             logger.info("Successfully connected to Hopsworks")
 
@@ -62,20 +70,12 @@ class HopsworksClient:
         name = name or config["feature_group_name"]
         version = version or config["feature_group_version"]
 
-        fg_exists = False
         try:
             self.feature_group = self.feature_store.get_feature_group(
                 name=name, version=version
             )
-            # Sometimes get_feature_group returns an object even if it doesn't exist
-            if self.feature_group:
-                fg_exists = True
-        except Exception:
-            fg_exists = False
-
-        if fg_exists:
             logger.info(f"Using existing feature group: {name} v{version}")
-        else:
+        except Exception:
             logger.info(f"Creating new feature group: {name} v{version}")
             self.feature_group = self.feature_store.create_feature_group(
                 name=name,
@@ -86,12 +86,117 @@ class HopsworksClient:
                 online_enabled=False,
             )
             logger.info(f"Created feature group: {name} v{version}")
+        return self.feature_group
+
+    def get_or_create_feature_view(
+        self,
+        name: Optional[str] = None,
+        version: Optional[int] = None,
+    ):
+        if not self.feature_store:
+            raise RuntimeError("Not connected to Hopsworks. Call connect() first.")
+
+        config = get_hopsworks_config()
+        name = name or config["feature_view_name"]
+        version = version or config["feature_view_version"]
+        fg_name = config["feature_group_name"]
+        fg_version = config["feature_group_version"]
+
+        try:
+            self.feature_view = self.feature_store.get_feature_view(
+                name=name, version=version
+            )
+            logger.info(f"Using existing feature view: {name} v{version}")
+        except Exception as e:
+            logger.info(
+                f"Feature view not found ({e}), creating new: {name} v{version}"
+            )
+            try:
+                feature_group = self.get_or_create_feature_group(
+                    name=fg_name, version=fg_version
+                )
+                query = feature_group.select_all()
+                self.feature_view = self.feature_store.create_feature_view(
+                    name=name,
+                    version=version,
+                    query=query,
+                    labels=["is_trending"],
+                )
+                logger.info(f"Created feature view: {name} v{version}")
+            except Exception as create_error:
+                logger.error(f"Failed to create feature view: {create_error}")
+                logger.error(
+                    "Make sure the feature group has data. Run the feature pipeline first."
+                )
+                return None
+        return self.feature_view
+
+    def get_model(self, model_name: str, model_version: Optional[int] = None):
+        """Gets a model from the model registry. If version is not specified, it will return the best model"""
+        if not self.model_registry:
+            raise RuntimeError("Not connected to Hopsworks. Call connect() first.")
+
+        try:
+            if model_version:
+                return self.model_registry.get_model(model_name, model_version)
+            else:
+                return self.model_registry.get_best_model(model_name, "accuracy")
+        except Exception as e:
+            logger.error(f"Failed to get model {model_name}: {e}")
+            raise
+
+    def register_model(
+        self,
+        model,
+        le,  # Added le parameter
+        model_name: str,
+        description: str,
+        metrics: dict,
+        X_train: pd.DataFrame,
+        y_train: pd.DataFrame,
+    ):
+        if not self.model_registry:
+            raise RuntimeError("Not connected to Hopsworks. Call connect() first.")
+
+        input_schema = Schema(X_train)
+        output_schema = Schema(y_train)
+        model_schema = ModelSchema(
+            input_schema=input_schema, output_schema=output_schema
+        )
+
+        # Create a temporary directory to save model artifacts
+        model_dir = "/tmp/github_trending_model"
+        os.makedirs(model_dir, exist_ok=True)
+        joblib.dump(model, os.path.join(model_dir, "model.pkl"))
+        joblib.dump(le, os.path.join(model_dir, "language_encoder.pkl"))
+
+        try:
+            # Determine next model version
+            try:
+                models = self.model_registry.get_models(name=model_name)
+                latest_version = max(m.version for m in models) if models else 0
+                new_version = latest_version + 1
+            except Exception:
+                new_version = 1
+            logger.info(f"Creating new model version: {new_version}")
+
+            py_model = self.model_registry.python.create_model(
+                name=model_name,
+                version=new_version,
+                description=description,
+                model_schema=model_schema,
+                metrics=metrics,
+            )
+            py_model.save(model_dir)  # Save the directory with artifacts
+            logger.info("Model successfully registered in Hopsworks.")
+            return py_model
+        except Exception as e:
+            logger.error(f"Failed to register model: {e}")
+            raise
 
     def insert_features(self, df: pd.DataFrame, wait_for_job: bool = True):
         if not self.feature_group:
-            raise RuntimeError(
-                "Feature group not initialized. Call get_or_create_feature_group() first."
-            )
+            self.get_or_create_feature_group()
 
         # Validate schema
         required_cols = [
