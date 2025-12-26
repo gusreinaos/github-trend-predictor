@@ -42,6 +42,8 @@ def get_hopsworks_config():
         "project_name": os.getenv("HOPS_PROJECT_NAME", "github_trending"),
         "feature_group_name": "github_trending",
         "feature_group_version": 1,
+        "feature_view_name": os.getenv("HOPS_FEATURE_VIEW_NAME", "github_trending_view"),
+        "feature_view_version": int(os.getenv("HOPS_FEATURE_VIEW_VERSION", 1)),
     }
 
 

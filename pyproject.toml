@@ -20,9 +20,9 @@ dependencies = [
     "confluent-kafka>=2.12.2",
     "gradio>=6.2.0",
     "great-expectations>=1.10.0",
-    "hopsworks>=4.6.0",
+    "hopsworks==4.2.*",
     "matplotlib>=3.10.8",
-    "pandas>=2.3.3",
+    "pandas>=2.1.0",
     "pyarrow>=22.0.0",
     "pydantic>=2.12.5",
     "pydantic-settings>=2.12.0",
@@ -36,4 +36,5 @@ dependencies = [
 [project.scripts]
 backfill = "github_predictor.pipelines.feature_pipeline.backfill_pipeline:run_backfill"
 daily-features = "github_predictor.pipelines.feature_pipeline.daily_pipeline:run_daily_features"
-train = "github_predictor.pipelines.training_pipeline:run_training"
+train = "github_predictor.pipelines.training_pipeline.training:run_train"
+predict = "github_predictor.pipelines.inference_pipeline.predict:run_predict"
