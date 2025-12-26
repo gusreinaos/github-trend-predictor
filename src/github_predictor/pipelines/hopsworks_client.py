@@ -106,29 +106,29 @@ class HopsworksClient:
             self.feature_view = self.feature_store.get_feature_view(
                 name=name, version=version
             )
-            logger.info(f"Using existing feature view: {name} v{version}")
+            if self.feature_view is None:
+                logger.info(f"Feature view not found, creating new: {name} v{version}")
+                try:
+                    feature_group = self.get_or_create_feature_group(
+                        name=fg_name, version=fg_version
+                    )
+                    query = feature_group.select_all()
+                    self.feature_view = self.feature_store.create_feature_view(
+                        name=name,
+                        version=version,
+                        query=query,
+                        labels=["is_trending"],
+                    )
+                    logger.info(f"Created feature view: {name} v{version}")
+                except Exception as create_error:
+                    logger.error(f"Failed to create feature view: {create_error}")
+                    logger.error(
+                        "Make sure the feature group has data. Run the feature pipeline first."
+                    )
+                    return None
         except Exception as e:
-            logger.info(
-                f"Feature view not found ({e}), creating new: {name} v{version}"
-            )
-            try:
-                feature_group = self.get_or_create_feature_group(
-                    name=fg_name, version=fg_version
-                )
-                query = feature_group.select_all()
-                self.feature_view = self.feature_store.create_feature_view(
-                    name=name,
-                    version=version,
-                    query=query,
-                    labels=["is_trending"],
-                )
-                logger.info(f"Created feature view: {name} v{version}")
-            except Exception as create_error:
-                logger.error(f"Failed to create feature view: {create_error}")
-                logger.error(
-                    "Make sure the feature group has data. Run the feature pipeline first."
-                )
-                return None
+            logger.error(f"Error from feature view retrieval: {e}")
+
         return self.feature_view
 
     def get_model(self, model_name: str, model_version: Optional[int] = None):
