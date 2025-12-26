@@ -39,14 +39,11 @@ jobs:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
         run: |
           uv run predict
-          echo TODO
 
       - name: upload predictions artifact
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: predictions-${{ github.run_number }}
-          path: |
-            predictions/
-            *.csv
+          path: predictions.json
           retention-days: 30
