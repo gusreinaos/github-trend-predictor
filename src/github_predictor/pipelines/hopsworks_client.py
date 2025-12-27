@@ -19,11 +19,11 @@ logger = setup_logger("hopsworks_client")
 class HopsworksClient:
     def __init__(self):
         env = load_env_vars()
-        self.api_key = env.get("HOPS_KEY")
+        self.api_key = env.get("HOPSWORKS_KEY")
 
         if not self.api_key:
             raise ValueError(
-                "HOPS_KEY environment variable is required. "
+                "HOPSWORKS_KEY environment variable is required. "
                 "Please set it in your .env file."
             )
 
@@ -212,7 +212,7 @@ class HopsworksClient:
             "fork_rate",
             "popularity_score",
             "is_trending",
-            "stars_per_day", # Added stars_per_day
+            "stars_per_day",  # Added stars_per_day
         ]
 
         missing_cols = set(required_cols) - set(df.columns)
@@ -239,7 +239,7 @@ class HopsworksClient:
                 "fork_rate": "float64",
                 "popularity_score": "float64",
                 "is_trending": "int64",
-                "stars_per_day": "float64", # Added stars_per_day type
+                "stars_per_day": "float64",  # Added stars_per_day type
             }
         )
 
