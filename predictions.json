@@ -1,0 +1,30 @@
+{
+    "prediction_date": "2025-12-27",
+    "predictions": [
+        {
+            "repo_name": "rendercv/rendercv",
+            "language": "Python",
+            "probability": 0.8636501431465149
+        },
+        {
+            "repo_name": "agrinman/tunnelto",
+            "language": "Rust",
+            "probability": 0.8186654448509216
+        },
+        {
+            "repo_name": "TheAlgorithms/Python",
+            "language": "Python",
+            "probability": 0.7132390141487122
+        },
+        {
+            "repo_name": "Shubhamsaboo/awesome-llm-apps",
+            "language": "Python",
+            "probability": 0.3525274097919464
+        },
+        {
+            "repo_name": "xerrors/Yuxi-Know",
+            "language": "Python",
+            "probability": 0.20558008551597595
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+name: training-weekly
+
+on:
+  schedule:
+    # Run every Sunday at 02:00 UTC (before daily pipelines)
+    - cron: "0 2 * * 0"
+  workflow_dispatch:
+
+jobs:
+  train_model:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: install python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install uv
+          uv sync
+
+      - name: run training pipeline
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+        run: |
+          uv run train
+
+      - name: upload training artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-training-${{ github.run_number }}
+          path: |
+            models/
+            metrics/
+            *.png
+            *.json
+          retention-days: 90

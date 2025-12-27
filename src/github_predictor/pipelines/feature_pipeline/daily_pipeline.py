@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 from github_predictor.pipelines.feature_pipeline.feature_enricher import FeatureEnricher
-from github_predictor.pipelines.feature_pipeline.hopsworks_client import HopsworksClient
+from github_predictor.pipelines.hopsworks_client import HopsworksClient
 from github_predictor.pipelines.feature_pipeline.trending_labeler import TrendingLabeler
 from github_predictor.pipelines.feature_pipeline.trending_scraper import TrendingScraper
 from github_predictor.utils.config import DATA_DIR, setup_logger
@@ -62,10 +62,21 @@ def run_daily_features():
 
     features_df["collection_date"] = today_str
 
+    # Add a placeholder for the label, as we don't know it yet.
+    # This makes the data available for inference.
+    features_df["is_trending"] = -1 
+    
+    # Upload today's features for inference
+    logger.info("Uploading today's unlabeled features for inference.")
+    hops_client = HopsworksClient()
+    hops_client.connect()
+    hops_client.insert_features(features_df, wait_for_job=True)
+    logger.info("Successfully uploaded today's features for inference.")
+
     # Save unlabeled data for labeling after 7 days
     unlabeled_path = DATA_DIR / f"unlabeled_{today_str}.csv"
     features_df.to_csv(unlabeled_path, index=False)
-    logger.info(f"Saved {len(features_df)} unlabeled features to {unlabeled_path}")
+    logger.info(f"Saved {len(features_df)} unlabeled features to {unlabeled_path} for future labeling.")
 
     # 4. Check for data from 7 days ago to label
     seven_days_ago = today - timedelta(days=7)

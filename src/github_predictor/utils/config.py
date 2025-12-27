@@ -21,10 +21,10 @@ def setup_logger(name: str = "github_predictor"):
 def load_env_vars():
     load_dotenv()
 
-    hops_key = os.getenv("HOPS_KEY")
-    if not hops_key or hops_key.startswith("your_"):
-        logging.warning("HOPS_KEY not found in environment variables.")
-        hops_key = None
+    HOPSWORKS_API_KEY = os.getenv("HOPSWORKS_API_KEY")
+    if not HOPSWORKS_API_KEY or HOPSWORKS_API_KEY.startswith("your_"):
+        logging.warning("HOPSWORKS_API_KEY not found in environment variables.")
+        HOPSWORKS_API_KEY = None
 
     github_token = os.getenv("GITHUB_TOKEN")
     # Ignore placeholder values
@@ -32,16 +32,20 @@ def load_env_vars():
         github_token = None
 
     return {
-        "HOPS_KEY": hops_key,
+        "HOPSWORKS_API_KEY": HOPSWORKS_API_KEY,
         "GITHUB_TOKEN": github_token,
     }
 
 
 def get_hopsworks_config():
     return {
-        "project_name": os.getenv("HOPS_PROJECT_NAME", "github_trending"),
+        "project_name": os.getenv("HOPS_PROJECT_NAME") or "id2223scalableml",
         "feature_group_name": "github_trending",
         "feature_group_version": 1,
+        "feature_view_name": os.getenv(
+            "HOPS_FEATURE_VIEW_NAME", "github_trending_view"
+        ),
+        "feature_view_version": int(os.getenv("HOPS_FEATURE_VIEW_VERSION", 1)),
     }
 
 
