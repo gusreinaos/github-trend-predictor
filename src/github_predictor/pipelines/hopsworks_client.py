@@ -19,11 +19,11 @@ logger = setup_logger("hopsworks_client")
 class HopsworksClient:
     def __init__(self):
         env = load_env_vars()
-        self.api_key = env.get("HOPSWORKS_KEY")
+        self.api_key = env.get("HOPSWORKS_API_KEY")
 
         if not self.api_key:
             raise ValueError(
-                "HOPSWORKS_KEY environment variable is required. "
+                "HOPSWORKS_API_KEY environment variable is required. "
                 "Please set it in your .env file."
             )
 

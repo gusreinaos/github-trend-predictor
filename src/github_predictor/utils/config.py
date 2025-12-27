@@ -21,10 +21,10 @@ def setup_logger(name: str = "github_predictor"):
 def load_env_vars():
     load_dotenv()
 
-    HOPSWORKS_KEY = os.getenv("HOPSWORKS_KEY")
-    if not HOPSWORKS_KEY or HOPSWORKS_KEY.startswith("your_"):
-        logging.warning("HOPSWORKS_KEY not found in environment variables.")
-        HOPSWORKS_KEY = None
+    HOPSWORKS_API_KEY = os.getenv("HOPSWORKS_API_KEY")
+    if not HOPSWORKS_API_KEY or HOPSWORKS_API_KEY.startswith("your_"):
+        logging.warning("HOPSWORKS_API_KEY not found in environment variables.")
+        HOPSWORKS_API_KEY = None
 
     github_token = os.getenv("GITHUB_TOKEN")
     # Ignore placeholder values
@@ -32,7 +32,7 @@ def load_env_vars():
         github_token = None
 
     return {
-        "HOPSWORKS_KEY": HOPSWORKS_KEY,
+        "HOPSWORKS_API_KEY": HOPSWORKS_API_KEY,
         "GITHUB_TOKEN": github_token,
     }
 
