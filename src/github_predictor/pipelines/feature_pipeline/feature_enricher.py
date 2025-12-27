@@ -41,7 +41,6 @@ class FeatureEnricher:
             "days_old": 0,
             "fork_rate": 0.0,
             "popularity_score": 0.0,
-            "stars_per_day": 0.0, # Added stars_per_day
         }
 
         # 1. GitHub API
@@ -117,7 +116,6 @@ class FeatureEnricher:
             + result["stars_total"] * 0.3
             + result["forks_total"] * 0.2
         )
-        result["stars_per_day"] = result["stars_total"] / max(result["days_old"], 1)
 
         return result
 

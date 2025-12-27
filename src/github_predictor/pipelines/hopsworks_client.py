@@ -212,7 +212,6 @@ class HopsworksClient:
             "fork_rate",
             "popularity_score",
             "is_trending",
-            "stars_per_day",  # Added stars_per_day
         ]
 
         missing_cols = set(required_cols) - set(df.columns)
@@ -239,7 +238,6 @@ class HopsworksClient:
                 "fork_rate": "float64",
                 "popularity_score": "float64",
                 "is_trending": "int64",
-                "stars_per_day": "float64",  # Added stars_per_day type
             }
         )
 
