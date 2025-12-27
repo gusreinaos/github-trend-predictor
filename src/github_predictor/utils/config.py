@@ -39,7 +39,7 @@ def load_env_vars():
 
 def get_hopsworks_config():
     return {
-        "project_name": os.getenv("HOPS_PROJECT_NAME", "id2223scalableml"),
+        "project_name": os.getenv("HOPS_PROJECT_NAME") or "id2223scalableml",
         "feature_group_name": "github_trending",
         "feature_group_version": 1,
         "feature_view_name": os.getenv(
