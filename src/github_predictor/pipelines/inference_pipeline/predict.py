@@ -11,8 +11,7 @@ A training pipeline that does the following:
 import os
 import joblib
 import pandas as pd
-from datetime import datetime, timedelta
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder # Added OneHotEncoder
+from datetime import datetime
 
 from github_predictor.pipelines.hopsworks_client import HopsworksClient
 from github_predictor.utils.config import (
@@ -45,16 +44,20 @@ def run_predict():
     # Download model artifacts
     model_dir = latest_model.download()
     model = joblib.load(os.path.join(model_dir, "model.pkl"))
-    ohe = joblib.load(os.path.join(model_dir, "language_encoder.pkl")) # ohe instead of le
+    ohe = joblib.load(
+        os.path.join(model_dir, "language_encoder.pkl")
+    )  # ohe instead of le
 
     # Get data for inference (today's data)
-    feature_view = hops_client.get_or_create_feature_view()
+    # Query feature group directly to get latest data without feature view sync delay
+    hops_client.get_or_create_feature_group()
 
-    # Fetch data for today. Hopsworks might need a small buffer.
-    end_date = datetime.now()
-    start_date = end_date - timedelta(days=1)
+    # Read all data and filter for today's collection_date
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    all_data = hops_client.feature_group.read()
 
-    data = feature_view.get_batch_data(start_time=start_date, end_time=end_date)
+    # Filter for today's data (unlabeled rows have is_trending = -1)
+    data = all_data[all_data["collection_date"].dt.strftime("%Y-%m-%d") == today_str]
 
     if data.empty:
         print("No new data found for inference.")
@@ -74,9 +77,11 @@ def run_predict():
     )
 
     # Encode 'language' using OneHotEncoder
-    language_encoded = ohe.transform(X[['language']])
-    language_df = pd.DataFrame(language_encoded, columns=ohe.get_feature_names_out(['language']), index=X.index)
-    X = pd.concat([X.drop('language', axis=1), language_df], axis=1)
+    language_encoded = ohe.transform(X[["language"]])
+    language_df = pd.DataFrame(
+        language_encoded, columns=ohe.get_feature_names_out(["language"]), index=X.index
+    )
+    X = pd.concat([X.drop("language", axis=1), language_df], axis=1)
 
     # Predict probabilities
     predictions = model.predict_proba(X)[:, 1]
@@ -85,7 +90,7 @@ def run_predict():
     results = pd.DataFrame(
         {
             "repo_name": repo_names,
-            "language": data["language"], # Keep original language for output
+            "language": data["language"],  # Keep original language for output
             "probability": predictions,
         }
     )
@@ -93,9 +98,16 @@ def run_predict():
     # Sort by probability and get top 50
     results = results.sort_values(by="probability", ascending=False).head(50)
 
-    # Save predictions
+    # Save predictions with date at top level
     predictions_path = PROJECT_ROOT / "predictions.json"
-    results.to_json(predictions_path, orient="records", indent=4)
+    output = {
+        "prediction_date": today_str,
+        "predictions": results.to_dict(orient="records"),
+    }
+    import json
+
+    with open(predictions_path, "w") as f:
+        json.dump(output, f, indent=4)
 
     print(f"Top 50 predictions saved to {predictions_path}")
 
