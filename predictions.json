@@ -1,30 +1,45 @@
 {
-    "prediction_date": "2025-12-28",
+    "prediction_date": "2025-12-29",
     "predictions": [
         {
-            "repo_name": "agrinman/tunnelto",
+            "repo_name": "BloopAI/vibe-kanban",
             "language": "Rust",
-            "probability": 0.8186654448509216
+            "probability": 0.9809678196907043
         },
         {
             "repo_name": "TheAlgorithms/Python",
             "language": "Python",
-            "probability": 0.7855936884880066
-        },
-        {
-            "repo_name": "rendercv/rendercv",
-            "language": "Python",
-            "probability": 0.7502313256263733
+            "probability": 0.8090858459472656
         },
         {
             "repo_name": "Shubhamsaboo/awesome-llm-apps",
             "language": "Python",
-            "probability": 0.607347309589386
+            "probability": 0.6982766389846802
         },
         {
-            "repo_name": "xerrors/Yuxi-Know",
-            "language": "Python",
-            "probability": 0.3005980849266052
+            "repo_name": "Flowseal/zapret-discord-youtube",
+            "language": "Batchfile",
+            "probability": 0.6332389712333679
+        },
+        {
+            "repo_name": "QuantConnect/Lean",
+            "language": "C#",
+            "probability": 0.39135366678237915
+        },
+        {
+            "repo_name": "sinelaw/fresh",
+            "language": "Rust",
+            "probability": 0.38201338052749634
+        },
+        {
+            "repo_name": "RustPython/RustPython",
+            "language": "Rust",
+            "probability": 0.32937270402908325
+        },
+        {
+            "repo_name": "Sergeydigl3/zapret-discord-youtube-linux",
+            "language": "Shell",
+            "probability": 0.014336605556309223
         }
     ]
 }
