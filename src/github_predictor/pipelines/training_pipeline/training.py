@@ -49,6 +49,11 @@ def run_train():
     # Get training data
     X, y = feature_view.training_data(description="GitHub Trending Training Data")
 
+    # Filter out rows where the label is not 0 or 1, which are invalid labels.
+    valid_indices = y[y["is_trending"].isin([0, 1])].index
+    X = X.loc[valid_indices]
+    y = y.loc[valid_indices]
+
     # Preprocessing
     # Drop unnecessary columns
     X = X.drop(["repo_name", "collection_date", "hn_buzz_score", "created_at"], axis=1)
