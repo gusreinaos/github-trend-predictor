@@ -1,45 +1,75 @@
 {
-    "prediction_date": "2025-12-29",
+    "prediction_date": "2025-12-30",
     "predictions": [
+        {
+            "repo_name": "x1xhlol/system-prompts-and-models-of-ai-tools",
+            "language": "Unknown",
+            "probability": 0.876733660697937
+        },
         {
             "repo_name": "BloopAI/vibe-kanban",
             "language": "Rust",
-            "probability": 0.9809678196907043
+            "probability": 0.8697977662086487
+        },
+        {
+            "repo_name": "resemble-ai/chatterbox",
+            "language": "Python",
+            "probability": 0.7209615707397461
         },
         {
             "repo_name": "TheAlgorithms/Python",
             "language": "Python",
-            "probability": 0.8090858459472656
+            "probability": 0.7031077146530151
         },
         {
-            "repo_name": "Shubhamsaboo/awesome-llm-apps",
+            "repo_name": "sansan0/TrendRadar",
             "language": "Python",
-            "probability": 0.6982766389846802
+            "probability": 0.6224976778030396
         },
         {
-            "repo_name": "Flowseal/zapret-discord-youtube",
-            "language": "Batchfile",
-            "probability": 0.6332389712333679
-        },
-        {
-            "repo_name": "QuantConnect/Lean",
-            "language": "C#",
-            "probability": 0.39135366678237915
+            "repo_name": "gitroomhq/postiz-app",
+            "language": "TypeScript",
+            "probability": 0.4817224144935608
         },
         {
             "repo_name": "sinelaw/fresh",
             "language": "Rust",
-            "probability": 0.38201338052749634
+            "probability": 0.40039360523223877
+        },
+        {
+            "repo_name": "antiwork/gumroad",
+            "language": "Ruby",
+            "probability": 0.3118743598461151
+        },
+        {
+            "repo_name": "Stirling-Tools/Stirling-PDF",
+            "language": "Java",
+            "probability": 0.30171898007392883
         },
         {
             "repo_name": "RustPython/RustPython",
             "language": "Rust",
-            "probability": 0.32937270402908325
+            "probability": 0.29989954829216003
         },
         {
-            "repo_name": "Sergeydigl3/zapret-discord-youtube-linux",
-            "language": "Shell",
-            "probability": 0.014336605556309223
+            "repo_name": "Flowseal/zapret-discord-youtube",
+            "language": "Batchfile",
+            "probability": 0.2890036702156067
+        },
+        {
+            "repo_name": "jellyfin/jellyfin",
+            "language": "C#",
+            "probability": 0.26225313544273376
+        },
+        {
+            "repo_name": "QuantConnect/Lean",
+            "language": "C#",
+            "probability": 0.18307118117809296
+        },
+        {
+            "repo_name": "vanilla-wiiu/vanilla",
+            "language": "C",
+            "probability": 0.16836559772491455
         }
     ]
 }
