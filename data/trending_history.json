@@ -1655,5 +1655,21 @@
     "QuantConnect/Lean",
     "Shubhamsaboo/awesome-llm-apps",
     "sinelaw/fresh"
+  ],
+  "2025-12-30": [
+    "QuantConnect/Lean",
+    "RustPython/RustPython",
+    "Flowseal/zapret-discord-youtube",
+    "BloopAI/vibe-kanban",
+    "gitroomhq/postiz-app",
+    "sansan0/TrendRadar",
+    "sinelaw/fresh",
+    "x1xhlol/system-prompts-and-models-of-ai-tools",
+    "Stirling-Tools/Stirling-PDF",
+    "resemble-ai/chatterbox",
+    "antiwork/gumroad",
+    "TheAlgorithms/Python",
+    "vanilla-wiiu/vanilla",
+    "jellyfin/jellyfin"
   ]
 }
