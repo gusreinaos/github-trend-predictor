@@ -1,75 +1,70 @@
 {
-    "prediction_date": "2025-12-30",
+    "prediction_date": "2025-12-31",
     "predictions": [
-        {
-            "repo_name": "x1xhlol/system-prompts-and-models-of-ai-tools",
-            "language": "Unknown",
-            "probability": 0.876733660697937
-        },
         {
             "repo_name": "BloopAI/vibe-kanban",
             "language": "Rust",
-            "probability": 0.8697977662086487
+            "probability": 0.9837074875831604
+        },
+        {
+            "repo_name": "x1xhlol/system-prompts-and-models-of-ai-tools",
+            "language": "Unknown",
+            "probability": 0.912044107913971
+        },
+        {
+            "repo_name": "anthropics/skills",
+            "language": "Python",
+            "probability": 0.9073613286018372
+        },
+        {
+            "repo_name": "sst/opencode",
+            "language": "TypeScript",
+            "probability": 0.9019578695297241
+        },
+        {
+            "repo_name": "cjpais/Handy",
+            "language": "TypeScript",
+            "probability": 0.6782180070877075
+        },
+        {
+            "repo_name": "alexta69/metube",
+            "language": "Python",
+            "probability": 0.6368129253387451
+        },
+        {
+            "repo_name": "jrouwe/JoltPhysics",
+            "language": "C++",
+            "probability": 0.5367725491523743
+        },
+        {
+            "repo_name": "louislam/uptime-kuma",
+            "language": "JavaScript",
+            "probability": 0.3949752748012543
         },
         {
             "repo_name": "resemble-ai/chatterbox",
             "language": "Python",
-            "probability": 0.7209615707397461
-        },
-        {
-            "repo_name": "TheAlgorithms/Python",
-            "language": "Python",
-            "probability": 0.7031077146530151
-        },
-        {
-            "repo_name": "sansan0/TrendRadar",
-            "language": "Python",
-            "probability": 0.6224976778030396
-        },
-        {
-            "repo_name": "gitroomhq/postiz-app",
-            "language": "TypeScript",
-            "probability": 0.4817224144935608
+            "probability": 0.3640807569026947
         },
         {
             "repo_name": "sinelaw/fresh",
             "language": "Rust",
-            "probability": 0.40039360523223877
-        },
-        {
-            "repo_name": "antiwork/gumroad",
-            "language": "Ruby",
-            "probability": 0.3118743598461151
-        },
-        {
-            "repo_name": "Stirling-Tools/Stirling-PDF",
-            "language": "Java",
-            "probability": 0.30171898007392883
-        },
-        {
-            "repo_name": "RustPython/RustPython",
-            "language": "Rust",
-            "probability": 0.29989954829216003
-        },
-        {
-            "repo_name": "Flowseal/zapret-discord-youtube",
-            "language": "Batchfile",
-            "probability": 0.2890036702156067
-        },
-        {
-            "repo_name": "jellyfin/jellyfin",
-            "language": "C#",
-            "probability": 0.26225313544273376
+            "probability": 0.29713836312294006
         },
         {
             "repo_name": "QuantConnect/Lean",
             "language": "C#",
-            "probability": 0.18307118117809296
+            "probability": 0.2805447280406952
         },
         {
-            "repo_name": "vanilla-wiiu/vanilla",
-            "language": "C",
-            "probability": 0.16836559772491455
+            "repo_name": "RustPython/RustPython",
+            "language": "Rust",
+            "probability": 0.12850598990917206
+        },
+        {
+            "repo_name": "timescale/pg-aiguide",
+            "language": "Python",
+            "probability": 0.030175616964697838
         }
     ]
 }
