@@ -1671,5 +1671,20 @@
     "TheAlgorithms/Python",
     "vanilla-wiiu/vanilla",
     "jellyfin/jellyfin"
+  ],
+  "2025-12-31": [
+    "BloopAI/vibe-kanban",
+    "x1xhlol/system-prompts-and-models-of-ai-tools",
+    "QuantConnect/Lean",
+    "jrouwe/JoltPhysics",
+    "timescale/pg-aiguide",
+    "resemble-ai/chatterbox",
+    "RustPython/RustPython",
+    "sinelaw/fresh",
+    "alexta69/metube",
+    "anthropics/skills",
+    "cjpais/Handy",
+    "sst/opencode",
+    "louislam/uptime-kuma"
   ]
 }
