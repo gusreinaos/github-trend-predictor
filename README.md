@@ -6,6 +6,7 @@ An end-to-end ML system that collects GitHub data daily, trains an XGBoost class
 
 [![Daily Pipeline](https://github.com/gusreinaos/github-trend-predictor/actions/workflows/repos-daily.yml/badge.svg)](https://github.com/gusreinaos/github-trend-predictor/actions/workflows/repos-daily.yml)
 [![Inference](https://github.com/gusreinaos/github-trend-predictor/actions/workflows/inference-daily.yml/badge.svg)](https://github.com/gusreinaos/github-trend-predictor/actions/workflows/inference-daily.yml)
+[![Hugging Face Space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/gzsol/github_trend_predictor)
 
 ---
 
