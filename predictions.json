@@ -1,70 +1,55 @@
 {
-    "prediction_date": "2025-12-31",
+    "prediction_date": "2026-01-01",
     "predictions": [
         {
             "repo_name": "BloopAI/vibe-kanban",
             "language": "Rust",
-            "probability": 0.9837074875831604
+            "probability": 0.9538549780845642
         },
         {
-            "repo_name": "x1xhlol/system-prompts-and-models-of-ai-tools",
-            "language": "Unknown",
-            "probability": 0.912044107913971
-        },
-        {
-            "repo_name": "anthropics/skills",
+            "repo_name": "sansan0/TrendRadar",
             "language": "Python",
-            "probability": 0.9073613286018372
+            "probability": 0.8954059481620789
         },
         {
-            "repo_name": "sst/opencode",
-            "language": "TypeScript",
-            "probability": 0.9019578695297241
-        },
-        {
-            "repo_name": "cjpais/Handy",
-            "language": "TypeScript",
-            "probability": 0.6782180070877075
-        },
-        {
-            "repo_name": "alexta69/metube",
-            "language": "Python",
-            "probability": 0.6368129253387451
-        },
-        {
-            "repo_name": "jrouwe/JoltPhysics",
-            "language": "C++",
-            "probability": 0.5367725491523743
-        },
-        {
-            "repo_name": "louislam/uptime-kuma",
+            "repo_name": "harvard-edge/cs249r_book",
             "language": "JavaScript",
-            "probability": 0.3949752748012543
+            "probability": 0.7897142767906189
         },
         {
             "repo_name": "resemble-ai/chatterbox",
             "language": "Python",
-            "probability": 0.3640807569026947
+            "probability": 0.6127614974975586
         },
         {
-            "repo_name": "sinelaw/fresh",
-            "language": "Rust",
-            "probability": 0.29713836312294006
+            "repo_name": "organicmaps/organicmaps",
+            "language": "C++",
+            "probability": 0.4753268361091614
         },
         {
-            "repo_name": "QuantConnect/Lean",
-            "language": "C#",
-            "probability": 0.2805447280406952
+            "repo_name": "afkarxyz/SpotiFLAC",
+            "language": "TypeScript",
+            "probability": 0.44384217262268066
         },
         {
-            "repo_name": "RustPython/RustPython",
-            "language": "Rust",
-            "probability": 0.12850598990917206
+            "repo_name": "openai/openai-cookbook",
+            "language": "Jupyter Notebook",
+            "probability": 0.36722928285598755
+        },
+        {
+            "repo_name": "nocodb/nocodb",
+            "language": "TypeScript",
+            "probability": 0.21901018917560577
+        },
+        {
+            "repo_name": "google-gemini/computer-use-preview",
+            "language": "Python",
+            "probability": 0.18872903287410736
         },
         {
             "repo_name": "timescale/pg-aiguide",
             "language": "Python",
-            "probability": 0.030175616964697838
+            "probability": 0.04608581215143204
         }
     ]
 }
