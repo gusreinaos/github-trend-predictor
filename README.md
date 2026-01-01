@@ -74,7 +74,8 @@ gantt
 | ------------- | ---------------- | ----------------------- | -------------------- |
 | **Feature**   | Daily 06:11 UTC  | `uv run daily-features` | Features → Hopsworks |
 | **Training**  | Sunday 02:00 UTC | `uv run train`          | Model → Registry     |
-| **Inference** | After features   | `uv run predict`        | `predictions.json`   |
+| **Inference** | After features | `uv run predict` | `predictions.json` |
+| **HF Push**   | On 'predictions.json' update | `huggingface-cli upload ...` | `predictions.json` → Hugging Face Space |
 
 ---
 
