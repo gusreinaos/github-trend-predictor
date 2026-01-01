@@ -1,0 +1,27 @@
+name: Update HF Space Data
+on:
+  push:
+    paths:
+      - "predictions.json" # Triggers whenever this file is updated
+  workflow_dispatch: # Allows you to run it manually
+
+jobs:
+  update-space:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Hugging Face Hub
+        run: pip install huggingface_hub
+
+      - name: Upload to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          # Replace 'YOUR_USERNAME/YOUR_SPACE_NAME' with your actual Space path
+          huggingface-cli upload gzsol/github_trend_predictor \
+            ./predictions.json \
+            predictions.json \
+            --repo-type space \
+            --token $HF_TOKEN
