@@ -1712,5 +1712,16 @@
     "yichuan-w/LEANN",
     "livekit/agents",
     "DayuanJiang/next-ai-draw-io"
+  ],
+  "2026-01-03": [
+    "HQarroum/docker-android",
+    "nocodb/nocodb",
+    "openai/openai-cookbook",
+    "ourongxing/newsnow",
+    "rossant/awesome-math",
+    "usememos/memos",
+    "GitHubDaily/GitHubDaily",
+    "SYSTRAN/faster-whisper",
+    "Koenkk/zigbee2mqtt"
   ]
 }
