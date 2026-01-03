@@ -1,65 +1,50 @@
 {
-    "prediction_date": "2026-01-02",
+    "prediction_date": "2026-01-03",
     "predictions": [
-        {
-            "repo_name": "yichuan-w/LEANN",
-            "language": "Python",
-            "probability": 0.9717525243759155
-        },
-        {
-            "repo_name": "BloopAI/vibe-kanban",
-            "language": "Rust",
-            "probability": 0.9538549780845642
-        },
-        {
-            "repo_name": "DayuanJiang/next-ai-draw-io",
-            "language": "TypeScript",
-            "probability": 0.688062310218811
-        },
-        {
-            "repo_name": "HandsOnLLM/Hands-On-Large-Language-Models",
-            "language": "Jupyter Notebook",
-            "probability": 0.6340226531028748
-        },
         {
             "repo_name": "usememos/memos",
             "language": "Go",
-            "probability": 0.6037261486053467
+            "probability": 0.7748194932937622
         },
         {
-            "repo_name": "harvard-edge/cs249r_book",
-            "language": "JavaScript",
-            "probability": 0.4702478349208832
-        },
-        {
-            "repo_name": "organicmaps/organicmaps",
-            "language": "C++",
-            "probability": 0.44209763407707214
-        },
-        {
-            "repo_name": "livekit/agents",
+            "repo_name": "rossant/awesome-math",
             "language": "Python",
-            "probability": 0.32405227422714233
+            "probability": 0.4686168432235718
         },
         {
-            "repo_name": "awslabs/amazon-bedrock-agentcore-samples",
-            "language": "Jupyter Notebook",
-            "probability": 0.2876925766468048
+            "repo_name": "GitHubDaily/GitHubDaily",
+            "language": "Unknown",
+            "probability": 0.46016114950180054
         },
         {
-            "repo_name": "afkarxyz/SpotiFLAC",
+            "repo_name": "ourongxing/newsnow",
             "language": "TypeScript",
-            "probability": 0.1936546415090561
+            "probability": 0.4328995645046234
         },
         {
-            "repo_name": "Polymarket/agents",
+            "repo_name": "SYSTRAN/faster-whisper",
             "language": "Python",
-            "probability": 0.1575784683227539
+            "probability": 0.3618384301662445
+        },
+        {
+            "repo_name": "openai/openai-cookbook",
+            "language": "Jupyter Notebook",
+            "probability": 0.3473319411277771
+        },
+        {
+            "repo_name": "nocodb/nocodb",
+            "language": "TypeScript",
+            "probability": 0.2396475076675415
         },
         {
             "repo_name": "HQarroum/docker-android",
             "language": "Shell",
-            "probability": 0.09181597083806992
+            "probability": 0.12618283927440643
+        },
+        {
+            "repo_name": "Koenkk/zigbee2mqtt",
+            "language": "TypeScript",
+            "probability": 0.05414822697639465
         }
     ]
 }
