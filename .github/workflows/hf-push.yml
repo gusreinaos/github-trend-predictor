@@ -1,10 +1,10 @@
 name: Update HF Space Data
 on:
   # Triggered after inference-daily workflow completes successfully
-  workflow_run:
-    workflows: ["inference-daily"]
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: ["inference-daily"]
+  #   types:
+  #     - completed
   # Allow manual trigger for testing
   workflow_dispatch:
 

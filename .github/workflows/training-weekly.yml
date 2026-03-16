@@ -1,9 +1,9 @@
 name: training-weekly
 
 on:
-  schedule:
-    # Run every Sunday at 02:00 UTC (before daily pipelines)
-    - cron: "0 2 * * 0"
+  # schedule:
+  #   # Run every Sunday at 02:00 UTC (before daily pipelines)
+  #   - cron: "0 2 * * 0"
   workflow_dispatch:
 
 jobs:

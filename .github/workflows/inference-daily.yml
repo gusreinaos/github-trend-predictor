@@ -2,10 +2,10 @@ name: inference-daily
 
 on:
   # Triggered by repos-daily workflow completion
-  workflow_run:
-    workflows: ["repos-daily"]
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: ["repos-daily"]
+  #   types:
+  #     - completed
   # Allow manual trigger for testing
   workflow_dispatch:
 

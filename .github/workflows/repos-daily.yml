@@ -1,8 +1,8 @@
 name: repos-daily
 
 on:
-  schedule:
-    - cron: "11 6 * * *"
+  # schedule:
+  #   - cron: "11 6 * * *"
   workflow_dispatch:
 
 jobs:
